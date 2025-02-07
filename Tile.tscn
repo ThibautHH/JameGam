@@ -1,6 +1,11 @@
-[gd_scene format=3 uid="uid://7vbn4es3hxe7"]
+[gd_scene load_steps=2 format=3 uid="uid://7vbn4es3hxe7"]
+
+[ext_resource type="Script" path="res://tile.gd" id="1_e67jp"]
 
 [node name="Tile" type="Node2D"]
+script = ExtResource("1_e67jp")
+metadata/pos = Vector2i(0, 0)
 
-[node name="Tile" type="Polygon2D" parent="."]
-polygon = PackedVector2Array(0, 0, 100, 0, 150, 86.6, 100, 173.2, 0, 173.2, -50, 86.6)
+[node name="ground" type="Polygon2D" parent="."]
+scale = Vector2(0.05, 0.05)
+polygon = PackedVector2Array(0, 0, 1000, 0, 1500, 866, 1000, 1732, 0, 1732, -500, 866)
