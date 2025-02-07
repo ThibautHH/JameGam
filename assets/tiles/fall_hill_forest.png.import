@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dwhtil58xykjm"
-path="res://.godot/imported/forested-deciduous-fall-hills-tile.png-795a19f8fe4a9f1c07d948c97b2504b7.ctex"
+path="res://.godot/imported/fall_hill_forest.png-306a11e67dc5d70e143989b5cefe117f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/forested-deciduous-fall-hills-tile.png"
-dest_files=["res://.godot/imported/forested-deciduous-fall-hills-tile.png-795a19f8fe4a9f1c07d948c97b2504b7.ctex"]
+source_file="res://assets/tiles/fall_hill_forest.png"
+dest_files=["res://.godot/imported/fall_hill_forest.png-306a11e67dc5d70e143989b5cefe117f.ctex"]
 
 [params]
 
