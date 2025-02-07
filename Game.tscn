@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=4 uid="uid://7vbn4es3hxe7"]
+[gd_scene load_steps=10 format=3 uid="uid://7vbn4es3hxe7"]
 
-[ext_resource type="PackedScene" uid="uid://brgysvq6f5coc" path="res://Player.tscn" id="player_scene"]
+[ext_resource type="Texture2D" uid="uid://bqlsj77rv25ce" path="res://assets/units/units_atlas.png" id="entity_atlas"]
 [ext_resource type="Texture2D" uid="uid://bt0mykalwcj1r" path="res://assets/tiles/atlas.png" id="ground_atlas"]
+[ext_resource type="PackedScene" uid="uid://brgysvq6f5coc" path="res://Player.tscn" id="player_scene"]
 [ext_resource type="Script" path="res://game.gd" id="Script_Game"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_Biomes"]
@@ -45,20 +46,32 @@ sources/1 = SubResource("TileSetAtlasSource_Biomes")
 resource_name = "Player"
 scenes/1/scene = ExtResource("player_scene")
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_Entities"]
+texture = ExtResource("entity_atlas")
+texture_region_size = Vector2i(72, 72)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+
 [sub_resource type="TileSet" id="Entities"]
 resource_name = "Entities"
 tile_shape = 3
 tile_offset_axis = 1
 tile_size = Vector2i(72, 72)
 sources/0 = SubResource("TileSetScenesCollectionSource_Player")
+sources/1 = SubResource("TileSetAtlasSource_Entities")
 
 [node name="Root" type="Node2D"]
 script = ExtResource("Script_Game")
+metadata/player_pos = Vector2i(0, 0)
 
 [node name="Ground Layer" type="TileMapLayer" parent="."]
-tile_map_data = PackedByteArray("AAAAAAAAAQAAAAEAAAABAP//AQACAAAAAAABAAAAAQACAAAAAAAAAAEAAQACAAAAAAD//wAAAQACAAAAAAAAAP//AQACAAAAAAD/////AQACAAAAAAA=")
 tile_set = SubResource("Ground")
 
 [node name="Entity Layer" type="TileMapLayer" parent="."]
-tile_map_data = PackedByteArray("AAAAAAAAAAAAAAAAAQA=")
 tile_set = SubResource("Entities")
