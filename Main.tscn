@@ -8,3 +8,4 @@ script = ExtResource("1_7kclc")
 metadata/tile_types = {
 5: ExtResource("2_ikp6y")
 }
+metadata/tiles = []
