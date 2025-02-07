@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://7vbn4es3hxe7"]
+[gd_scene load_steps=4 format=3 uid="uid://7vbn4es3hxe7"]
 
 [ext_resource type="Script" path="res://game.gd" id="1_7kclc"]
 [ext_resource type="Texture2D" uid="uid://dwhtil58xykjm" path="res://assets/tiles/fall_hill_forest.png" id="2_ikp6y"]
+[ext_resource type="PackedScene" uid="uid://brgysvq6f5coc" path="res://Player.tscn" id="3_xf28i"]
 
 [node name="Root" type="Node2D"]
 script = ExtResource("1_7kclc")
@@ -9,3 +10,7 @@ metadata/tile_types = {
 5: ExtResource("2_ikp6y")
 }
 metadata/tiles = []
+
+[node name="Player" parent="." instance=ExtResource("3_xf28i")]
+z_index = 1
+metadata/pos = Vector2i(2, 2)
