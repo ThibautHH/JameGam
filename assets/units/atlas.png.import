@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://qy5co3ypw7u1"
-path="res://.godot/imported/crocodile.png-de73063ea6d946cbd2068ddbac257829.ctex"
+uid="uid://dai8srkt84aqc"
+path="res://.godot/imported/atlas.png-803e4f1cf5720e7293ad6cf7bd1ee11e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/units/crocodile.png"
-dest_files=["res://.godot/imported/crocodile.png-de73063ea6d946cbd2068ddbac257829.ctex"]
+source_file="res://assets/units/atlas.png"
+dest_files=["res://.godot/imported/atlas.png-803e4f1cf5720e7293ad6cf7bd1ee11e.ctex"]
 
 [params]
 
