@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://dqrqfiqnps5kr"]
+
+[ext_resource type="Theme" uid="uid://b6jvf3edqsin" path="res://themes/buttonTheme.tres" id="1_xf8ka"]
+[ext_resource type="Script" path="res://scripts/action.gd" id="2_5vpap"]
+
+[node name="Button" type="Button"]
+offset_right = 135.0
+offset_bottom = 31.0
+theme = ExtResource("1_xf8ka")
+script = ExtResource("2_5vpap")

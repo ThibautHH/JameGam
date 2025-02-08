@@ -1,5 +1,6 @@
 extends Control
 
+const bt_scene = preload("res://scenes/button.tscn");
 
 var event = [
 	{
@@ -20,19 +21,18 @@ var event = [
 func _ready() -> void:
 	spawnButton(event);
 
-func spendAction(actionCost : int, button : Button) -> void:
+func oui(actionCost : int) -> void:
 	print(actionCost)
-	button.find_child("AnimatedSprite2D").play("default")
 
 
 func spawnButton(config) -> void:
 	var i : int = 0;
 	for item in config:
-		var bt = preload("res://button.tscn").instantiate();
+		var bt = bt_scene.instantiate();
 		bt.position = Vector2(50, i * 100);
 		bt.text = item["desc"]
 		bt.set_meta("id", i)
-		bt.spendAction.connect(spendAction)
+		bt.spendAction.connect(oui)
 		add_child(bt);
 		i += 1;
 
