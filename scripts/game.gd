@@ -77,8 +77,13 @@ func get_random_empty_neighbour(pos : Vector2i) -> Vector2i:
 	return (get_neighbours(pos).filter(is_void).pick_random())
 
 func end_turn() -> void:
-	ground_layer.set_cell(get_random_empty_neighbour(player_pos),
+	ground_layer.set_cell(
+		get_random_empty_neighbour(player_pos),
 		0, get_random_tile())
+	ground_layer.get_used_cells().filter(is_surrounded).map(func(pos):
+		ground_layer.set_cell(pos, 0,
+			Vector2i(#ground_layer.get_cell_atlas_coords(pos).x, 5)))
+				1, 5)))
 	if is_surrounded(player_pos):
 		lost = true
 		return
