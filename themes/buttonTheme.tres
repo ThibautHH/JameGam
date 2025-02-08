@@ -1,0 +1,38 @@
+[gd_resource type="Theme" load_steps=5 format=3 uid="uid://b6jvf3edqsin"]
+
+[ext_resource type="StyleBox" uid="uid://d1imus1uifdhe" path="res://themes/menu.tres" id="1_3uubv"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_84fi1"]
+bg_color = Color(0.345098, 0.407843, 0.741176, 0.627451)
+border_color = Color(0.121445, 0.160328, 0.312063, 0.627451)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0k47j"]
+bg_color = Color(0.344981, 0.406206, 0.741837, 0.992157)
+border_width_bottom = 4
+border_color = Color(0.190104, 0.242384, 0.448525, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+shadow_color = Color(0.513295, 0.152316, 0.134004, 1)
+shadow_size = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_33so8"]
+bg_color = Color(0.344981, 0.406206, 0.741837, 0.992157)
+border_width_bottom = 4
+border_color = Color(0.190104, 0.242384, 0.448525, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[resource]
+Button/styles/disabled = SubResource("StyleBoxFlat_84fi1")
+Button/styles/focus = null
+Button/styles/hover = SubResource("StyleBoxFlat_0k47j")
+Button/styles/normal = SubResource("StyleBoxFlat_33so8")
+Button/styles/pressed = ExtResource("1_3uubv")
