@@ -41,9 +41,8 @@ func move_player(pos : Vector2i) -> void:
 	if (is_neighbour(target_pos, player_pos)
 		and target_pos in ground.get_used_cells()
 		and !is_impassable(target_pos)):
-		ui.set_cell(player_pos,
-			ui.get_cell_source_id(player_pos),
-			Vector2i(0, ui.get_cell_atlas_coords(player_pos).y))
+		ui.set_cell(player_pos)
+		ui.set_cell(target_pos, 0, Vector2i(0, 1))
 		entities.set_cell(player_pos)
 		entities.set_cell(target_pos, 0, Vector2i(0, 0))
 		set_meta("player_pos", target_pos)
