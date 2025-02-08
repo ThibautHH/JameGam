@@ -1,6 +1,8 @@
 extends Control
 
 @onready var continue_bt: Button = $continue
+@onready var start: Button = $start
+
 
 const SETTIGNS = preload("res://scenes/settigns.tscn")
 const GAME = preload("res://scenes/Game.tscn")
@@ -8,6 +10,7 @@ const GAME = preload("res://scenes/Game.tscn")
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	continue_bt.disabled = true;
+	start.grab_focus()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
