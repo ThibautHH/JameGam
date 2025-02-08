@@ -1,80 +1,98 @@
 extends Node2D
 
+@export var ground_layer : TileMapLayer
+@export var entity_layer : TileMapLayer
+@export var ui_layer : TileMapLayer
+
+var player_pos : Vector2i
+var player_stamina : int = 1
+var player_max_stamina : int = 1
+
+const all_directions : Array = [
+	TileSet.CellNeighbor.CELL_NEIGHBOR_TOP_SIDE,
+	TileSet.CellNeighbor.CELL_NEIGHBOR_TOP_RIGHT_SIDE,
+	TileSet.CellNeighbor.CELL_NEIGHBOR_BOTTOM_RIGHT_SIDE,
+	TileSet.CellNeighbor.CELL_NEIGHBOR_BOTTOM_SIDE,
+	TileSet.CellNeighbor.CELL_NEIGHBOR_BOTTOM_LEFT_SIDE,
+	TileSet.CellNeighbor.CELL_NEIGHBOR_TOP_LEFT_SIDE]
+
 func get_random_tile() -> Vector2i:
 	return Vector2i(randi_range(0, 4), randi_range(0, 4))
 
+func get_random_empty_neighbour(pos : Vector2i) -> Vector2i:
+	return (all_directions.map(func(direction):
+			return ground_layer.get_neighbor_cell(pos, direction))
+		.filter(func(pos): return !ground_layer.get_used_cells().has(pos))
+		.pick_random())
+
 func make_starting_tiles() -> void:
-	var map : TileMapLayer = find_child("Ground Layer")
-	var center : Vector2i = map.local_to_map(get_viewport_rect().size / 2)
-	var starting_tiles : Array = [
-		Vector2i(0, -1), Vector2i(1, -1 if (center.x % 2 == 0) else 1), Vector2i(1, 0),
-		Vector2i(0, 1), Vector2i(-1, 0), Vector2i(-1, -1 if (center.x % 2 == 0) else 1)]
-	set_meta("player_pos", center)
-	find_child("Entity Layer").set_cell(center, 0, Vector2i(0, 0))
-	map.set_cell(center, 0, Vector2i(4, 1))
-	map.set_cell(center + starting_tiles.pop_at(randi_range(0, 5)), 0, get_random_tile())
-	map.set_cell(center + starting_tiles[randi_range(0, 4)], 0, get_random_tile())
+	var center : Vector2i = ground_layer.local_to_map(get_viewport_rect().size / 2)
+	var starting_tiles : Array = all_directions.duplicate()
+	player_pos = center
+	entity_layer.set_cell(center, 0, Vector2i(0, 0))
+	ui_layer.set_cell(center, 0, Vector2i(1, 0))
+	ground_layer.set_cell(center, 0, Vector2i(4, 1))
+	ground_layer.set_cell(ground_layer.get_neighbor_cell(center,
+			starting_tiles.pop_at(randi_range(0, 5))),
+		0, get_random_tile())
+	ground_layer.set_cell(ground_layer.get_neighbor_cell(center,
+			starting_tiles.pick_random()),
+		0, get_random_tile())
 
 func _ready() -> void:
 	make_starting_tiles()
 
 func is_neighbour(a : Vector2i, b : Vector2i) -> bool:
-	return (((a.x - 1 <= b.x and b.x <= a.x + 1)
-			and (b.y == a.y or b.y == a.y + 1))
-		or (b.y == a.y - 1 and b.x == a.x)) if (b.x % 2 == 0) else (
-		((a.x - 1 <= b.x and b.x <= a.x + 1)
-			and (b.y == a.y or b.y == a.y - 1))
-		or (b.y == a.y + 1 and b.x == a.x))
+	return all_directions.any(func(direction):
+		return a == ground_layer.get_neighbor_cell(b, direction))
 
 func is_impassable(pos : Vector2i) -> bool:
-	return false
+	return ground_layer.get_cell_tile_data(pos).get_custom_data("impassable")
 
-func has_action(pos : Vector2i) -> bool:
-	return false
+func get_tile_movement_cost(pos : Vector2i) -> int:
+	return (ground_layer.get_cell_tile_data(pos)
+		.get_custom_data("movement_cost"))
 
 func move_player(pos : Vector2i) -> void:
-	var ground : TileMapLayer = find_child("Ground Layer")
-	var entities : TileMapLayer = find_child("Entity Layer")
-	var ui : TileMapLayer = find_child("UI Layer")
-	var target_pos : Vector2i = ground.local_to_map(to_local(pos))
-	var player_pos : Vector2i = get_meta("player_pos")
-	if (is_neighbour(target_pos, player_pos)
-		and target_pos in ground.get_used_cells()
-		and !is_impassable(target_pos)):
-		ui.set_cell(player_pos)
-		ui.set_cell(target_pos, 0, Vector2i(0, 1))
-		entities.set_cell(player_pos)
-		entities.set_cell(target_pos, 0, Vector2i(0, 0))
-		set_meta("player_pos", target_pos)
+	ui_layer.set_cell(player_pos)
+	ui_layer.set_cell(pos, 0, Vector2i(1, 1))
+	entity_layer.set_cell(player_pos)
+	entity_layer.set_cell(pos, 0, Vector2i(0, 0))
+	player_pos = pos
+	player_stamina -= get_tile_movement_cost(pos)
 
-func move_mouse_highlighting(offset : Vector2) -> void:
-	var ui : TileMapLayer = find_child("UI Layer")
-	var player_pos : Vector2i = get_meta("player_pos")
-	var new_pos : Vector2i = ui.local_to_map(get_local_mouse_position())
-	var old_pos : Vector2i = ui.local_to_map(get_local_mouse_position() - offset)
-	ui.set_cell(old_pos,
-		-1 if ui.get_cell_atlas_coords(old_pos).x == 0 else 0,
-		Vector2i(ui.get_cell_atlas_coords(old_pos).x, 0))
-	if (new_pos in find_child("Ground Layer").get_used_cells()):
-		var overlay_type : int = (4 if (new_pos != player_pos
-			and new_pos in find_child("Entity Layer").get_used_cells())
-			else (1 if (!is_neighbour(new_pos, player_pos)
-				or (new_pos == player_pos and !has_action(new_pos)))
-				else (3 if is_impassable(new_pos) else 2)))
-		ui.set_cell(new_pos, 0, Vector2i((ui.get_cell_atlas_coords(new_pos).x
-			if ui.get_cell_atlas_coords(new_pos).x >= 0 else 0), overlay_type))
+func can_move_to(pos : Vector2i) -> bool:
+	return !is_impassable(pos) and player_stamina >= 1
+
+func is_tile_possible_destination(pos : Vector2i) -> bool:
+	return (is_neighbour(pos, player_pos)
+		and pos in ground_layer.get_used_cells())
+
+func interact_with_tile(pos : Vector2i):
+	if pos == player_pos:
+		pass
+	if (is_tile_possible_destination(pos) and can_move_to(pos)):
+		move_player(pos)
 
 func _input(event: InputEvent) -> void:
 	if (event is InputEventMouseButton and event.pressed
 		and event.button_index == MOUSE_BUTTON_LEFT):
-			move_player(event.position)
+			interact_with_tile(
+				ground_layer.local_to_map(
+					ground_layer.to_local(event.position)))
 	if event is InputEventMouseMotion:
 		move_mouse_highlighting(event.relative)
 
-func update_overlay() -> void:
-	var ui : TileMapLayer = find_child("UI Layer")
-	var player_pos : Vector2i = get_meta("player_pos")
-	ui.set_cell(player_pos, 0, Vector2i(1, ui.get_cell_atlas_coords(player_pos).y))
-
-func _process(_delta: float) -> void:
-	update_overlay()
+func move_mouse_highlighting(offset : Vector2) -> void:
+	var new_pos : Vector2i = ui_layer.local_to_map(get_local_mouse_position())
+	var old_pos : Vector2i = ui_layer.local_to_map(get_local_mouse_position() - offset)
+	ui_layer.set_cell(old_pos,
+		-1 if ui_layer.get_cell_atlas_coords(old_pos).x == 0 else 0,
+		Vector2i(ui_layer.get_cell_atlas_coords(old_pos).x, 0))
+	if (new_pos in ground_layer.get_used_cells()):
+		var overlay_type : int = (4 if (new_pos != player_pos
+			and new_pos in entity_layer.get_used_cells())
+			else (1 if (!is_tile_possible_destination(new_pos))
+				else (2 if can_move_to(new_pos) else 3)))
+		ui_layer.set_cell(new_pos, 0, Vector2i(
+			maxi(ui_layer.get_cell_atlas_coords(new_pos).x, 0), overlay_type))
