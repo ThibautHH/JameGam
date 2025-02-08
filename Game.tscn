@@ -1,8 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://7vbn4es3hxe7"]
+[gd_scene load_steps=11 format=3 uid="uid://7vbn4es3hxe7"]
 
-[ext_resource type="Texture2D" uid="uid://bqlsj77rv25ce" path="res://assets/units/units_atlas.png" id="entity_atlas"]
+[ext_resource type="Texture2D" uid="uid://dai8srkt84aqc" path="res://assets/units/atlas.png" id="3_58tub"]
 [ext_resource type="Texture2D" uid="uid://bt0mykalwcj1r" path="res://assets/tiles/atlas.png" id="ground_atlas"]
-[ext_resource type="PackedScene" uid="uid://brgysvq6f5coc" path="res://Player.tscn" id="player_scene"]
+[ext_resource type="Texture2D" uid="uid://bqlsj77rv25ce" path="res://assets/overlay/atlas.png" id="overlay_atlas"]
 [ext_resource type="Script" path="res://game.gd" id="Script_Game"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_Biomes"]
@@ -40,14 +40,10 @@ resource_name = "Ground"
 tile_shape = 3
 tile_offset_axis = 1
 tile_size = Vector2i(72, 72)
-sources/1 = SubResource("TileSetAtlasSource_Biomes")
+sources/0 = SubResource("TileSetAtlasSource_Biomes")
 
-[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_Player"]
-resource_name = "Player"
-scenes/1/scene = ExtResource("player_scene")
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_Entities"]
-texture = ExtResource("entity_atlas")
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_we8m3"]
+texture = ExtResource("3_58tub")
 texture_region_size = Vector2i(72, 72)
 0:0/0 = 0
 1:0/0 = 0
@@ -63,8 +59,24 @@ resource_name = "Entities"
 tile_shape = 3
 tile_offset_axis = 1
 tile_size = Vector2i(72, 72)
-sources/0 = SubResource("TileSetScenesCollectionSource_Player")
-sources/1 = SubResource("TileSetAtlasSource_Entities")
+sources/0 = SubResource("TileSetAtlasSource_we8m3")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_Overlays"]
+texture = ExtResource("overlay_atlas")
+texture_region_size = Vector2i(72, 72)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+
+[sub_resource type="TileSet" id="Overlays"]
+resource_name = "Overlays"
+tile_shape = 3
+tile_offset_axis = 1
+tile_size = Vector2i(72, 72)
+sources/0 = SubResource("TileSetAtlasSource_Overlays")
 
 [node name="Root" type="Node2D"]
 script = ExtResource("Script_Game")
@@ -75,3 +87,6 @@ tile_set = SubResource("Ground")
 
 [node name="Entity Layer" type="TileMapLayer" parent="."]
 tile_set = SubResource("Entities")
+
+[node name="UI Layer" type="TileMapLayer" parent="."]
+tile_set = SubResource("Overlays")
