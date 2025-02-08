@@ -3,6 +3,7 @@ extends Control
 @onready var continue_bt: Button = $continue
 
 const SETTIGNS = preload("res://scenes/settigns.tscn")
+const GAME = preload("res://scenes/Game.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -15,7 +16,7 @@ func _process(delta: float) -> void:
 
 
 func _on_start_up() -> void:
-	pass
+	get_tree().change_scene_to_packed(GAME)
 
 func _on_settings_up() -> void:
 	get_tree().change_scene_to_packed(SETTIGNS)
