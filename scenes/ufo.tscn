@@ -1,0 +1,84 @@
+[gd_scene load_steps=13 format=3 uid="uid://dolo0vq5h8ko6"]
+
+[ext_resource type="Texture2D" uid="uid://d0hjvvhd10t2o" path="res://assets/ufo.png" id="1_fd3p0"]
+[ext_resource type="Script" path="res://scripts/ufo.gd" id="2_jq6vy"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cx8sn"]
+atlas = ExtResource("1_fd3p0")
+region = Rect2(0, 0, 255, 400)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0jd6d"]
+atlas = ExtResource("1_fd3p0")
+region = Rect2(255, 0, 255, 400)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fjky2"]
+atlas = ExtResource("1_fd3p0")
+region = Rect2(510, 0, 255, 400)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v18uo"]
+atlas = ExtResource("1_fd3p0")
+region = Rect2(765, 0, 255, 400)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n5wjs"]
+atlas = ExtResource("1_fd3p0")
+region = Rect2(1020, 0, 255, 400)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_314mi"]
+atlas = ExtResource("1_fd3p0")
+region = Rect2(1275, 0, 255, 400)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qmpve"]
+atlas = ExtResource("1_fd3p0")
+region = Rect2(1530, 0, 255, 400)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_scslc"]
+atlas = ExtResource("1_fd3p0")
+region = Rect2(1785, 0, 255, 400)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nivc8"]
+atlas = ExtResource("1_fd3p0")
+region = Rect2(2040, 0, 255, 400)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_luoet"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cx8sn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0jd6d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fjky2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v18uo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n5wjs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_314mi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qmpve")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_scslc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nivc8")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="ufo" type="AnimatedSprite2D"]
+position = Vector2(127, 201)
+scale = Vector2(0.3, 0.3)
+sprite_frames = SubResource("SpriteFrames_luoet")
+autoplay = "default"
+script = ExtResource("2_jq6vy")
+
+[connection signal="animation_finished" from="." to="." method="_on_animation_finished"]

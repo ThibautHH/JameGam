@@ -97,11 +97,7 @@ func create_new_tile(pos : Vector2i) -> void:
 
 func end_turn() -> void:
 	create_new_tile(get_random_empty_neighbour(player_pos))
-	ground_layer.get_used_cells().filter(is_surrounded).map(func(pos):
-		ground_layer.set_cell(pos, 0,
-			Vector2i(#ground_layer.get_cell_atlas_coords(pos).x, 5)))
-				1, 5))
-		entity_layer.set_cell(pos))
+	ground_layer.get_used_cells().filter(is_surrounded).map(func(pos): spwanUfo(pos))
 	if is_surrounded(player_pos):
 		lost = true
 		return
@@ -198,3 +194,16 @@ func _process(delta: float) -> void:
 	evil_display.text = str(get_meta("evil"))
 	strength_display.text = str(get_meta("strength"))
 	energy_display.text = str(get_meta("energy")) + " / " + str(get_meta("max_energy"))
+func spwanUfo(pos : Vector2i) -> void:
+	if (ground_layer.get_cell_atlas_coords(pos).y == 5):
+		return
+	var ufo = preload("res://scenes/ufo.tscn").instantiate()
+	ufo.position = pos * Vector2i(56, 72) + Vector2i(0, 20)
+	ufo.animation_finished.connect(destroyTile)
+	add_child(ufo)
+
+func destroyTile() -> void:
+	ground_layer.get_used_cells().filter(is_surrounded).map(func(pos):
+		ground_layer.set_cell(pos, 0, Vector2i(1, 5));
+		entity_layer.set_cell(pos)
+	)
