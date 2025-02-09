@@ -92,7 +92,10 @@ func is_surrounded(pos : Vector2i) -> bool:
 	return !(get_neighbours(pos).any(is_void))
 
 func get_random_empty_neighbour(pos : Vector2i) -> Vector2i:
-	return (get_neighbours(pos).filter(is_void).pick_random())
+	return (get_neighbours(pos)
+		.filter(is_void)
+		.filter(func(pos): return !is_surrounded(pos))
+		.pick_random())
 
 func create_new_tile(pos : Vector2i) -> void:
 	ground_layer.set_cell(pos, 0, get_random_tile())
