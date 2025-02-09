@@ -282,6 +282,7 @@ metadata/evil = 0
 metadata/strength = 1
 metadata/energy = 1
 metadata/max_energy = 1
+metadata/items = []
 
 [node name="Ground Layer" type="TileMapLayer" parent="."]
 tile_set = SubResource("Ground")
