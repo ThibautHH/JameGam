@@ -43,7 +43,8 @@ func _ready() -> void:
 	make_starting_tiles()
 
 func is_void(pos : Vector2i) -> bool:
-	return !(pos in ground_layer.get_used_cells())
+	return (!(pos in ground_layer.get_used_cells())
+		or ground_layer.get_cell_atlas_coords(pos).y == 5)
 
 func get_neighbours(pos : Vector2i) -> Array:
 	return all_directions.map(func(direction):
@@ -80,10 +81,15 @@ func is_surrounded(pos : Vector2i) -> bool:
 func get_random_empty_neighbour(pos : Vector2i) -> Vector2i:
 	return (get_neighbours(pos).filter(is_void).pick_random())
 
+func create_new_tile(pos : Vector2i) -> void:
+	ground_layer.set_cell(pos, 0, get_random_tile())
+	if (randi_range(0, 1) == 1):
+		var type : int = randi_range(1, 7)
+		entity_layer.set_cell(pos, 0,
+			Vector2i(type % 3, type / 3))
+
 func end_turn() -> void:
-	ground_layer.set_cell(
-		get_random_empty_neighbour(player_pos),
-		0, get_random_tile())
+	create_new_tile(get_random_empty_neighbour(player_pos))
 	ground_layer.get_used_cells().filter(is_surrounded).map(func(pos):
 		ground_layer.set_cell(pos, 0,
 			Vector2i(#ground_layer.get_cell_atlas_coords(pos).x, 5)))
@@ -112,10 +118,11 @@ func move_mouse_highlighting(offset : Vector2) -> void:
 		-1 if ui_layer.get_cell_atlas_coords(old_pos).x == 0 else 0,
 		Vector2i(ui_layer.get_cell_atlas_coords(old_pos).x, 0))
 	if (new_pos in ground_layer.get_used_cells()):
-		var overlay_type : int = (4 if (new_pos != player_pos
-			and new_pos in entity_layer.get_used_cells())
-			else (1 if (!is_tile_possible_destination(new_pos))
-				else (2 if can_move_to(new_pos) else 3)))
+		var overlay_type : int = (1 if (!is_tile_possible_destination(new_pos))
+				else (3 if !can_move_to(new_pos)
+					else 4 if (new_pos != player_pos
+							and new_pos in entity_layer.get_used_cells())
+						else 2))
 		ui_layer.set_cell(new_pos, 0, Vector2i(
 			maxi(ui_layer.get_cell_atlas_coords(new_pos).x, 0), overlay_type))
 
