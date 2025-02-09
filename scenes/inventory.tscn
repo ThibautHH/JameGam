@@ -1,6 +1,7 @@
-[gd_scene format=3 uid="uid://cx4mf7v1gjga"]
+[gd_scene format=3 uid="uid://bwndl7w4m1sfv"]
 
 [node name="Inventory" type="Node"]
 metadata/gold = 0
 metadata/evil = 0
 metadata/items = []
+metadata/strength = 0

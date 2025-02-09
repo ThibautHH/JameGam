@@ -209,24 +209,30 @@ texture_region_size = Vector2i(72, 72)
 1:0/0 = 0
 1:0/0/custom_data_0 = "berserk"
 1:0/0/custom_data_1 = "an angry looking dwarf"
+1:0/0/custom_data_2 = 2
 2:0/0 = 0
 2:0/0/custom_data_0 = "boat"
 2:0/0/custom_data_1 = "a cool looking boat"
+2:0/0/custom_data_2 = 8
 0:1/0 = 0
 0:1/0/custom_data_0 = "dragon"
 0:1/0/custom_data_1 = "does this guy breathe fire ?"
+0:1/0/custom_data_2 = 10
 1:1/0 = 0
 1:1/0/custom_data_0 = "troll"
 1:1/0/custom_data_1 = "uncivilised creature"
+1:1/0/custom_data_2 = 5
 2:1/0 = 0
 2:1/0/custom_data_0 = "ogre"
 2:1/0/custom_data_1 = "ughhh, what an ugly looking creature"
+2:1/0/custom_data_2 = 1
 0:2/0 = 0
 0:2/0/custom_data_0 = "peasant"
 0:2/0/custom_data_1 = "a farmer ..."
 1:2/0 = 0
 1:2/0/custom_data_0 = "scorpion"
 1:2/0/custom_data_1 = "this sneaky bastard looks dangerous"
+1:2/0/custom_data_2 = 4
 
 [sub_resource type="TileSet" id="Entities"]
 resource_name = "Entities"
@@ -237,6 +243,8 @@ custom_data_layer_0/name = "type"
 custom_data_layer_0/type = 4
 custom_data_layer_1/name = "flavor_text"
 custom_data_layer_1/type = 4
+custom_data_layer_2/name = "strength"
+custom_data_layer_2/type = 2
 sources/0 = SubResource("TileSetAtlasSource_we8m3")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_Overlays"]
@@ -353,7 +361,7 @@ uppercase = true
 position = Vector2(-24, 9)
 texture = ExtResource("7_036mw")
 
-[node name="strenght" type="Label" parent="GUI/invBar"]
+[node name="strength" type="Label" parent="GUI/invBar"]
 offset_left = 204.0
 offset_top = 12.0
 offset_right = 262.0
@@ -361,7 +369,7 @@ offset_bottom = 35.0
 text = "0"
 uppercase = true
 
-[node name="Sprite2D" type="Sprite2D" parent="GUI/invBar/strenght"]
+[node name="Sprite2D" type="Sprite2D" parent="GUI/invBar/strength"]
 position = Vector2(-23, 7)
 texture = ExtResource("8_8ouop")
 
@@ -392,6 +400,6 @@ texture = ExtResource("6_trw51")
 [node name="updateDisplay" type="Timer" parent="GUI/invBar"]
 autostart = true
 
-[connection signal="button_up" from="GUI/move to tile" to="." method="_on_move_to_tile_button_up"]
-[connection signal="button_up" from="GUI/end turn" to="." method="_on_end_turn_button_up"]
+[connection signal="button_up" from="GUI/move to tile" to="." method="move"]
+[connection signal="button_up" from="GUI/end turn" to="." method="end_turn"]
 [connection signal="timeout" from="GUI/invBar/updateDisplay" to="GUI/invBar" method="_on_update_display_timeout"]

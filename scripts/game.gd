@@ -115,9 +115,15 @@ func interact_with_tile(pos : Vector2i):
 	if pos != player_pos:
 		pass
 
-func _on_move_to_tile_button_up() -> void:
-	if (is_tile_possible_destination(target_tile) and can_move_to(target_tile)):
-		move_player(target_tile)
+func move() -> void:
+	if !(is_tile_possible_destination(target_tile) and can_move_to(target_tile)):
+		return
+	if target_tile in entity_layer.get_used_cells():
+		var odds : int = maxi(entity_layer.get_cell_tile_data(target_tile)
+			.get_custom_data("strength") - Inventory.get_meta("strength"), 0)
+		if odds != 0 and randi_range(0, odds) != 0:
+			return
+	move_player(target_tile)
 
 func move_mouse_highlighting(offset : Vector2) -> void:
 	var new_pos : Vector2i = ui_layer.local_to_map(get_local_mouse_position())
@@ -179,7 +185,3 @@ func apply_effects(index : int, target_tile : Vector2i) -> void:
 		var special = data.special;
 		if (special == "destroy"):
 			clearInteractions()
-
-
-func _on_end_turn_button_up() -> void:
-	end_turn()
