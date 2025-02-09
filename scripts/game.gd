@@ -3,9 +3,11 @@ extends Node2D
 @export var ground_layer : TileMapLayer
 @export var entity_layer : TileMapLayer
 @export var ui_layer : TileMapLayer
+@onready var console: RichTextLabel = $GUI/console
+@onready var tile_preview: Sprite2D = $"GUI/tile preview"
 
-var target_tile : Vector2i;
 var player_pos : Vector2i
+var target_tile : Vector2i = Vector2i(0, 0)
 
 @export var events : Node
 
@@ -65,6 +67,8 @@ func move_player(pos : Vector2i) -> void:
 	entity_layer.set_cell(pos, 0, Vector2i(0, 0))
 	player_pos = pos
 	player_stamina -= get_tile_movement_cost(pos)
+	clearInteractions()
+	spawnInterations(ground_layer.get_cell_tile_data(pos), pos)
 
 func is_impassable(pos : Vector2i) -> bool:
 	return ground_layer.get_cell_tile_data(pos).get_custom_data("impassable")
@@ -103,13 +107,17 @@ func end_turn() -> void:
 		player_stamina = player_max_stamina
 
 func interact_with_tile(pos : Vector2i):
-	target_tile = pos
+	if is_tile_possible_destination(pos):
+		target_tile = pos
+		var atlas_coords = ground_layer.get_cell_atlas_coords(target_tile)
+		var texture_scr = "res://assets/tiles/" + str(atlas_coords.y) + "_" + str(atlas_coords.x) + ".png"
+		tile_preview.texture = load(texture_scr)
 	if pos != player_pos:
-		if (is_tile_possible_destination(pos) and can_move_to(pos)):
-			move_player(pos)
-			end_turn()
-	else:
-		end_turn()
+		pass
+
+func _on_move_to_tile_button_up() -> void:
+	if (is_tile_possible_destination(target_tile) and can_move_to(target_tile)):
+		move_player(target_tile)
 
 func move_mouse_highlighting(offset : Vector2) -> void:
 	var new_pos : Vector2i = ui_layer.local_to_map(get_local_mouse_position())
@@ -138,23 +146,40 @@ func _input(event: InputEvent) -> void:
 		move_mouse_highlighting(event.relative)
 
 func clearInteractions() -> void:
-	pass
+	var to_delete = events.get_children()
+	for elem in to_delete:
+		elem.queue_free()
 
-func spawnInterations(terrainData) -> void:
+func spawnInterations(terrainData, pos) -> void:
 	var index : int = 0;
 	for elem : Dictionary in terrainData.get_custom_data("events"):
 		var button = preload("res://scenes/button.tscn").instantiate()
 		button.text = elem.description
 		button.set_meta("index", index)
+		button.set_meta("target_tile", pos)
 		button.position = Vector2i(0, index * 50)
 		button.button_up_index.connect(apply_effects)
 		events.add_child(button)
+		index += 1
+		if (not elem.has("effects")):
+			return
 
-func apply_effects(index : int) -> void:
-	var effects = ground_layer.get_cell_tile_data(target_tile).get_custom_data("events")[index]
-	print(effects)
-	#for effect in effects:
-		#Inventory.set_meta(effect.type, Inventory.get_meta(effect.type) + effect.value)
-	#clearInteractions()
-	#target_tile = target_pos
-	#spawnInterations(ground.get_cell_tile_data(target_pos))
+func apply_effects(index : int, target_tile : Vector2i) -> void:
+	var data = ground_layer.get_cell_tile_data(target_tile).get_custom_data("events")[index]
+	for effect in data.effects:
+		if (Inventory.get_meta(effect.type) + effect.value) < 0:
+			console.text = "[color=red]not enough " + effect.type + "[/color]"
+			return
+	for effect in data.effects:
+		Inventory.set_meta(effect.type, Inventory.get_meta(effect.type) + effect.value)
+	if (data.has("items")):
+		for item in data.items:
+			Inventory.get_meta("items").append(item)
+	if (data.has("special")):
+		var special = data.special;
+		if (special == "destroy"):
+			clearInteractions()
+
+
+func _on_end_turn_button_up() -> void:
+	end_turn()

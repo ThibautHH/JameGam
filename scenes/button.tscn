@@ -9,5 +9,6 @@ offset_bottom = 8.0
 theme = ExtResource("1_tbfwe")
 script = ExtResource("2_0yqym")
 metadata/index = 0
+metadata/target_tile = ""
 
 [connection signal="button_up" from="." to="." method="_on_button_up"]

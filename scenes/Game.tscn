@@ -17,39 +17,39 @@ texture = ExtResource("2_dc44s")
 texture_region_size = Vector2i(72, 72)
 0:0/0 = 0
 0:0/0/custom_data_0 = 2
-0:0/0/custom_data_2 = "cave"
+0:0/0/custom_data_2 = "The air is thick with the scent of damp stone, and the echoes of unseen drips vanish into the abyss."
 0:0/0/custom_data_3 = [{
-"description": "a cave"
+"description": "pick up some mushrooms"
 }]
 1:0/0 = 0
 1:0/0/custom_data_0 = 2
-1:0/0/custom_data_2 = "mountain"
+1:0/0/custom_data_2 = "Wisps of mist coil around jagged peaks, hiding secrets in their endless embrace."
 1:0/0/custom_data_3 = [{
-"description": "a cave"
+"description": "pray to the wind god"
 }]
 2:0/0 = 0
 2:0/0/custom_data_0 = 1
-2:0/0/custom_data_2 = "desert"
+2:0/0/custom_data_2 = "The sun blazes overhead, turning the endless dunes into a sea of shifting gold."
 2:0/0/custom_data_3 = [{
-"description": "a cave"
+"description": "drink water"
 }]
 3:0/0 = 0
 3:0/0/custom_data_0 = 2
-3:0/0/custom_data_2 = "desertHill"
+3:0/0/custom_data_2 = "A lone dune rises like a forgotten wave, its crest whispering with the restless wind."
 3:0/0/custom_data_3 = [{
-"description": "a cave"
+"description": "drink water"
 }]
 4:0/0 = 0
 4:0/0/custom_data_0 = 1
-4:0/0/custom_data_2 = "oasis"
+4:0/0/custom_data_2 = "A shimmering jewel in the arid expanse, its waters promise life in the heart of desolation."
 4:0/0/custom_data_3 = [{
-"description": "a cave"
+"description": "drink water"
 }]
 0:1/0 = 0
 0:1/0/custom_data_0 = 1
 0:1/0/custom_data_2 = "tent"
 0:1/0/custom_data_3 = [{
-"description": "a cave"
+"description": "drink water"
 }]
 1:1/0 = 0
 1:1/0/custom_data_0 = 2
@@ -65,45 +65,45 @@ texture_region_size = Vector2i(72, 72)
 }]
 3:1/0 = 0
 3:1/0/custom_data_0 = 2
-3:1/0/custom_data_2 = "forest"
+3:1/0/custom_data_2 = "Sunlight filters through an emerald canopy, dappling the mossy ground with shifting patterns."
 3:1/0/custom_data_3 = [{
-"description": "a cave"
+"description": "cut tree"
 }]
 4:1/0 = 0
 4:1/0/custom_data_0 = 1
-4:1/0/custom_data_2 = "grass"
+4:1/0/custom_data_2 = "A vast, rolling expanse where the wind dances freely through an ocean of emerald blades."
 4:1/0/custom_data_3 = [{
-"description": "a cave"
+"description": "pick some herbs"
 }]
 0:2/0 = 0
 0:2/0/custom_data_0 = 2
-0:2/0/custom_data_2 = "hill"
+0:2/0/custom_data_2 = "A gentle rise in the land offers a glimpse of the world beyond, kissed by the wandering sky."
 0:2/0/custom_data_3 = [{
-"description": "a cave"
+"description": "hike"
 }]
 1:2/0 = 0
 1:2/0/custom_data_0 = 1
-1:2/0/custom_data_2 = "house"
+1:2/0/custom_data_2 = "Nestled among towering peaks, the village clings to the mountainside like a secret whispered to the wind."
 1:2/0/custom_data_3 = [{
-"description": "a cave"
+"description": "oui"
 }]
 2:2/0 = 0
 2:2/0/custom_data_0 = 2
-2:2/0/custom_data_2 = "cis"
+2:2/0/custom_data_2 = "A frozen mirror stretches across the land, its surface trapping the sky in an eternal embrace."
 2:2/0/custom_data_3 = [{
-"description": "a cave"
+"description": "dig a hole"
 }]
 3:2/0 = 0
 3:2/0/custom_data_0 = 2
-3:2/0/custom_data_2 = "zear"
+3:2/0/custom_data_2 = "Molten fire churns hungrily, a searing heart of destruction and creation."
 3:2/0/custom_data_3 = [{
-"description": "a cave"
+"description": "fire"
 }]
 4:2/0 = 0
 4:2/0/custom_data_0 = 2
-4:2/0/custom_data_2 = "ezar"
+4:2/0/custom_data_2 = "The jagged peaks pierce the heavens, standing as silent sentinels of time."
 4:2/0/custom_data_3 = [{
-"description": "a cave"
+"description": "pray to the mountain god"
 }]
 0:3/0 = 0
 0:3/0/custom_data_0 = 2
@@ -119,21 +119,21 @@ texture_region_size = Vector2i(72, 72)
 }]
 2:3/0 = 0
 2:3/0/custom_data_0 = 1
-2:3/0/custom_data_2 = "ezar"
+2:3/0/custom_data_2 = "Snow field"
 2:3/0/custom_data_3 = [{
-"description": "a cave"
+"description": "white everywhere"
 }]
 3:3/0 = 0
 3:3/0/custom_data_0 = 2
-3:3/0/custom_data_2 = "ezar"
+3:3/0/custom_data_2 = "Snowy Hill"
 3:3/0/custom_data_3 = [{
-"description": "a cave"
+"description": "A gentle slope blanketed in white, where every step is muffled by winter’s hush."
 }]
 4:3/0 = 0
 4:3/0/custom_data_0 = 2
-4:3/0/custom_data_2 = "zear"
+4:3/0/custom_data_2 = "Snowy Mountain"
 4:3/0/custom_data_3 = [{
-"description": "a cave"
+"description": "Ice-laden crags stand defiant against the howling wind, their peaks lost in the storm’s embrace."
 }]
 0:4/0 = 0
 0:4/0/custom_data_0 = 1
@@ -143,27 +143,42 @@ texture_region_size = Vector2i(72, 72)
 }]
 1:4/0 = 0
 1:4/0/custom_data_0 = 2
-1:4/0/custom_data_2 = "zaer"
+1:4/0/custom_data_2 = "Thick mists coil over stagnant waters, where twisted roots grasp hungrily at the sodden earth."
 1:4/0/custom_data_3 = [{
-"description": "a cave"
+"description": "take a dip"
 }]
 2:4/0 = 0
 2:4/0/custom_data_0 = 1
-2:4/0/custom_data_2 = "zear"
+2:4/0/custom_data_2 = "Wooden walkways creak underfoot, suspended above murky waters that never truly sleep."
 2:4/0/custom_data_3 = [{
-"description": "a cave"
+"description": "buy a boat for 2 gold",
+"effects": [{
+"type": "gold",
+"value": -2
+}],
+"items": ["boat"]
+}, {
+"description": "pillage the village",
+"effects": [{
+"type": "gold",
+"value": 2
+}, {
+"type": "evil",
+"value": 1
+}],
+"special": "destroy"
 }]
 3:4/0 = 0
 3:4/0/custom_data_0 = 2
-3:4/0/custom_data_2 = "azer"
+3:4/0/custom_data_2 = "Volcano"
 3:4/0/custom_data_3 = [{
-"description": "a cave"
+"description": "Blackened rock trembles with hidden fury, veins of fire glowing beneath the cracks."
 }]
 4:4/0 = 0
 4:4/0/custom_data_0 = 1
-4:4/0/custom_data_2 = "zear"
+4:4/0/custom_data_2 = "Ocean"
 4:4/0/custom_data_3 = [{
-"description": "a cave"
+"description": "The endless blue whispers with the voice of the tides, carrying secrets only the deep can know."
 }]
 0:5/0 = 0
 0:5/0/custom_data_1 = true
@@ -271,6 +286,10 @@ offset_bottom = 71.0
 
 [node name="events" type="Node" parent="GUI"]
 
+[node name="tile preview" type="Sprite2D" parent="GUI"]
+position = Vector2(124, 80)
+scale = Vector2(2, 2)
+
 [node name="tile event" type="Label" parent="GUI"]
 layout_mode = 0
 offset_left = 121.0
@@ -281,10 +300,10 @@ text = "tile event :"
 
 [node name="tile description" type="Label" parent="GUI"]
 layout_mode = 0
-offset_left = 200.0
+offset_left = 132.0
 offset_top = 50.0
-offset_right = 240.0
-offset_bottom = 73.0
+offset_right = 306.0
+offset_bottom = 137.0
 
 [node name="entity description" type="Label" parent="GUI"]
 layout_mode = 0
@@ -293,15 +312,31 @@ offset_top = 183.0
 offset_right = 230.0
 offset_bottom = 206.0
 
+[node name="console" type="RichTextLabel" parent="GUI"]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 490.0
+offset_right = 311.0
+offset_bottom = 623.0
+bbcode_enabled = true
+
 [node name="move to tile" type="Button" parent="GUI"]
 layout_mode = 0
 offset_left = 135.0
 offset_top = 884.0
 offset_right = 227.0
 offset_bottom = 911.0
-scale = Vector2(2, 2)
 theme = ExtResource("5_ldy4f")
 text = "move to tile"
+
+[node name="end turn" type="Button" parent="GUI"]
+layout_mode = 0
+offset_left = 138.0
+offset_top = 922.0
+offset_right = 206.0
+offset_bottom = 949.0
+theme = ExtResource("5_ldy4f")
+text = "end turn"
 
 [node name="invBar" type="Node" parent="GUI"]
 script = ExtResource("6_h4uw1")
@@ -358,4 +393,5 @@ texture = ExtResource("6_trw51")
 autostart = true
 
 [connection signal="button_up" from="GUI/move to tile" to="." method="_on_move_to_tile_button_up"]
+[connection signal="button_up" from="GUI/end turn" to="." method="_on_end_turn_button_up"]
 [connection signal="timeout" from="GUI/invBar/updateDisplay" to="GUI/invBar" method="_on_update_display_timeout"]

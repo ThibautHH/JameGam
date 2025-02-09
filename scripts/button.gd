@@ -13,4 +13,4 @@ func _process(delta: float) -> void:
 signal button_up_index
 
 func _on_button_up() -> void:
-	button_up_index.emit(get_meta("index"))
+	button_up_index.emit(get_meta("index"), get_meta("target_tile"))
