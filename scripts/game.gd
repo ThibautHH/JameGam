@@ -1,5 +1,10 @@
 extends Node2D
 
+@onready var events: Node = $GUI/events
+@onready var ground_layer: TileMapLayer = $"Ground Layer"
+
+var target_tile : Vector2i = Vector2i(0, 0);
+
 func get_random_tile() -> Vector2i:
 	return Vector2i(randi_range(0, 4), randi_range(0, 4))
 
@@ -78,3 +83,25 @@ func update_overlay() -> void:
 
 func _process(_delta: float) -> void:
 	update_overlay()
+
+func clearInteractions() -> void:
+	pass
+
+func spawnInterations(terrainData) -> void:
+	var index : int = 0;
+	for elem : Dictionary in terrainData.get_custom_data("events"):
+		var button = preload("res://scenes/button.tscn").instantiate()
+		button.text = elem.description
+		button.set_meta("index", index)
+		button.position = Vector2i(0, index * 50)
+		button.button_up_index.connect(_on_bt_pressed)
+		events.add_child(button)
+
+func _on_bt_pressed(index : int) -> void:
+	var effects = ground_layer.get_cell_tile_data(target_tile).get_custom_data("events")[index]
+	print(effects)
+	#for effect in effects:
+		#Inventory.set_meta(effect.type, Inventory.get_meta(effect.type) + effect.value)
+	#clearInteractions()
+	#target_tile = target_pos
+	#spawnInterations(ground.get_cell_tile_data(target_pos))
