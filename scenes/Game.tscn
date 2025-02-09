@@ -53,15 +53,15 @@ texture_region_size = Vector2i(72, 72)
 0:1/0/custom_data_2 = "A nomadic desert tribe. They sell camels."
 0:1/0/custom_data_3 = [{
 "description": "Drink water"
-},{
+}, {
 "description": "Train (-1 gold, -1 energy, +1 strength)",
 "effects": [{
 "type": "gold",
 "value": -1
-},{
+}, {
 "type": "energy",
 "value": -1
-},{
+}, {
 "type": "strength",
 "value": 1
 }]
@@ -69,11 +69,9 @@ texture_region_size = Vector2i(72, 72)
 1:1/0 = 0
 1:1/0/custom_data_0 = 2
 1:1/0/custom_data_2 = "A dull and flat pasture, deserted by all but the hardiest of creatures."
-1:1/0/custom_data_3 = []
 2:1/0 = 0
 2:1/0/custom_data_0 = 2
 2:1/0/custom_data_2 = "Rolling hills stretch out in every direction, a sea of green beneath the endless sky."
-2:1/0/custom_data_3 = []
 3:1/0 = 0
 3:1/0/custom_data_0 = 2
 3:1/0/custom_data_2 = "A forest during fall is always dressed with beautiful reds and yellows."
@@ -110,14 +108,13 @@ texture_region_size = Vector2i(72, 72)
 3:2/0/custom_data_3 = [{
 "description": "BURN"
 }]
+3:2/0/custom_data_4 = ["water_bucket"]
 0:3/0 = 0
 0:3/0/custom_data_0 = 2
 0:3/0/custom_data_2 = "A vast expanse of damp earth, where the scent of decay mingles with the whispers of the dead."
-0:3/0/custom_data_3 = []
 1:3/0 = 0
 1:3/0/custom_data_0 = 1
 1:3/0/custom_data_2 = "A beautiful country-side home."
-1:3/0/custom_data_3 = []
 2:3/0 = 0
 2:3/0/custom_data_0 = 1
 2:3/0/custom_data_2 = "Snow field"
@@ -127,15 +124,12 @@ texture_region_size = Vector2i(72, 72)
 3:3/0 = 0
 3:3/0/custom_data_0 = 2
 3:3/0/custom_data_2 = "A gentle slope blanketed in white, where every step is muffled by winter’s hush."
-3:3/0/custom_data_3 = []
 4:3/0 = 0
 4:3/0/custom_data_0 = 2
 4:3/0/custom_data_2 = "Ice-laden crags stand defiant against the howling wind, their peaks lost in the storm’s embrace."
-4:3/0/custom_data_3 = []
 0:4/0 = 0
 0:4/0/custom_data_0 = 1
 0:4/0/custom_data_2 = "A lone hearth stands in the middle of a harsh and cold land."
-0:4/0/custom_data_3 = []
 1:4/0 = 0
 1:4/0/custom_data_0 = 2
 1:4/0/custom_data_2 = "Thick mists coil over stagnant waters, where twisted roots grasp hungrily at the sodden earth."
@@ -175,6 +169,7 @@ texture_region_size = Vector2i(72, 72)
 4:4/0/custom_data_3 = [{
 "description": "Try fishing"
 }]
+4:4/0/custom_data_4 = ["boat"]
 0:5/0 = 0
 0:5/0/custom_data_1 = true
 1:5/0 = 0
@@ -182,7 +177,6 @@ texture_region_size = Vector2i(72, 72)
 4:2/0 = 0
 4:2/0/custom_data_0 = 2
 4:2/0/custom_data_2 = "The jagged peaks pierce the heavens, standing as silent sentinels of time."
-4:2/0/custom_data_3 = []
 
 [sub_resource type="TileSet" id="Ground"]
 resource_name = "Ground"
@@ -197,6 +191,8 @@ custom_data_layer_2/name = "flavor_text"
 custom_data_layer_2/type = 4
 custom_data_layer_3/name = "events"
 custom_data_layer_3/type = 28
+custom_data_layer_4/name = "requirements"
+custom_data_layer_4/type = 28
 sources/0 = SubResource("TileSetAtlasSource_Biomes")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_we8m3"]

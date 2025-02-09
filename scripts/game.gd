@@ -74,7 +74,10 @@ func move_player(pos : Vector2i) -> void:
 	spawnInterations(ground_layer.get_cell_tile_data(pos), pos)
 
 func is_impassable(pos : Vector2i) -> bool:
-	return ground_layer.get_cell_tile_data(pos).get_custom_data("impassable")
+	return (ground_layer.get_cell_tile_data(pos).get_custom_data("impassable")
+		or (get_meta("items").any(func(item):
+			return (ground_layer.get_cell_tile_data(pos).get_custom_data("requirements")
+				.any(func(requirement): return item == requirement)))))
 
 func can_move_to(pos : Vector2i) -> bool:
 	return !is_impassable(pos) and get_meta("energy") >= 1
