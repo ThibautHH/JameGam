@@ -6,10 +6,10 @@ extends Control
 
 const SETTIGNS = preload("res://scenes/settigns.tscn")
 const GAME = preload("res://scenes/Game.tscn")
+const TUTORIAL = preload("res://scenes/tutorial.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	continue_bt.disabled = true;
 	start.grab_focus()
 
 
@@ -25,7 +25,7 @@ func _on_settings_up() -> void:
 	get_tree().change_scene_to_packed(SETTIGNS)
 
 func _on_continue_up() -> void:
-	pass
+	get_tree().change_scene_to_packed(TUTORIAL)
 
 func _on_quit_up() -> void:
 	get_tree().quit()

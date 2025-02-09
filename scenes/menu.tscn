@@ -31,7 +31,7 @@ offset_right = 961.0
 offset_bottom = 501.0
 scale = Vector2(2, 2)
 theme = ExtResource("3_maftw")
-text = "Continue"
+text = "Tutorial"
 
 [node name="settings" type="Button" parent="."]
 layout_mode = 0
