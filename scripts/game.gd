@@ -89,6 +89,8 @@ func end_turn() -> void:
 		return
 	if player_stamina < player_max_stamina:
 		player_stamina += 1
+	else:
+		player_stamina = player_max_stamina
 
 func interact_with_tile(pos : Vector2i):
 	if pos != player_pos:
