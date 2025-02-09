@@ -175,12 +175,13 @@ func spawnInterations(terrainData, pos) -> void:
 
 func apply_effects(index : int, target_tile : Vector2i) -> void:
 	var data = ground_layer.get_cell_tile_data(target_tile).get_custom_data("events")[index]
-	for effect in data.effects:
-		if (get_meta(effect.type) + effect.value) < 0:
-			console.text = "[color=red]not enough " + effect.type + "[/color]"
-			return
-	for effect in data.effects:
-		set_meta(effect.type, get_meta(effect.type) + effect.value)
+	if data.has("effects"):
+		for effect in data.effects:
+			if (get_meta(effect.type) + effect.value) < 0:
+				console.text = "[color=red]not enough " + effect.type + "[/color]"
+				return
+		for effect in data.effects:
+			set_meta(effect.type, get_meta(effect.type) + effect.value)
 	if (data.has("items")):
 		for item in data.items:
 			get_meta("items").append(item)
