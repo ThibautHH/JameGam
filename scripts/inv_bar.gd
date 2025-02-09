@@ -8,5 +8,5 @@ extends Node
 func _on_update_display_timeout() -> void:
 	evil.text = str(Inventory.get_meta("evil"))
 	gold.text = str(Inventory.get_meta("gold"))
-	#energy.text = str(Inventory.get_meta("energy"))
+	energy.text = str(Inventory.get_meta("energy")) + " / " + str(Inventory.get_meta("max_energy"))
 	strength.text = str(Inventory.get_meta("strength"))

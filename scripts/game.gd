@@ -11,7 +11,6 @@ var target_tile : Vector2i = Vector2i(0, 0)
 
 @export var events : Node
 
-var player_stamina : int = 1
 var player_max_stamina : int = 1
 
 var lost : bool = false
@@ -66,7 +65,8 @@ func move_player(pos : Vector2i) -> void:
 	entity_layer.set_cell(player_pos)
 	entity_layer.set_cell(pos, 0, Vector2i(0, 0))
 	player_pos = pos
-	player_stamina -= get_tile_movement_cost(pos)
+	Inventory.set_meta("energy",
+		Inventory.get_meta("energy") - get_tile_movement_cost(pos))
 	clearInteractions()
 	spawnInterations(ground_layer.get_cell_tile_data(pos), pos)
 
@@ -74,7 +74,7 @@ func is_impassable(pos : Vector2i) -> bool:
 	return ground_layer.get_cell_tile_data(pos).get_custom_data("impassable")
 
 func can_move_to(pos : Vector2i) -> bool:
-	return !is_impassable(pos) and player_stamina >= 1
+	return !is_impassable(pos) and Inventory.get_meta("energy") >= 1
 
 func is_tile_possible_destination(pos : Vector2i) -> bool:
 	return (is_neighbour(pos, player_pos) and !is_void(pos))
@@ -101,10 +101,11 @@ func end_turn() -> void:
 	if is_surrounded(player_pos):
 		lost = true
 		return
-	if player_stamina < player_max_stamina:
-		player_stamina += 1
+	var energy : int = Inventory.get_meta("energy")
+	if energy < Inventory.get_meta("max_energy"):
+		Inventory.set_meta("energy", energy + 1)
 	else:
-		player_stamina = player_max_stamina
+		Inventory.set_meta("energy", Inventory.get_meta("max_energy")) 
 
 func interact_with_tile(pos : Vector2i):
 	if is_tile_possible_destination(pos):

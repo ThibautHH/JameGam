@@ -5,3 +5,5 @@ metadata/gold = 0
 metadata/evil = 0
 metadata/items = []
 metadata/strength = 0
+metadata/energy = 1
+metadata/max_energy = 1
