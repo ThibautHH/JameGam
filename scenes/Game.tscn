@@ -22,57 +22,69 @@ texture_region_size = Vector2i(72, 72)
 }]
 1:0/0 = 0
 1:0/0/custom_data_0 = 2
-1:0/0/custom_data_2 = "Wisps of mist coil around jagged peaks, hiding secrets in their endless embrace."
+1:0/0/custom_data_2 = "Nestled among towering peaks, a ancient temple clings to the mountainside like a secret whispered to the wind."
 1:0/0/custom_data_3 = [{
-"description": "pray to the wind god"
+"description": "Pray to the mountain god",
+"effects": [{
+"type": "energy",
+"value": -1
+}]
 }]
 2:0/0 = 0
 2:0/0/custom_data_0 = 1
 2:0/0/custom_data_2 = "The sun blazes overhead, turning the endless dunes into a sea of shifting gold."
 2:0/0/custom_data_3 = [{
-"description": "drink water"
+"description": "Drink water"
 }]
 3:0/0 = 0
 3:0/0/custom_data_0 = 2
 3:0/0/custom_data_2 = "A lone dune rises like a forgotten wave, its crest whispering with the restless wind."
 3:0/0/custom_data_3 = [{
-"description": "drink water"
+"description": "Drink water"
 }]
 4:0/0 = 0
 4:0/0/custom_data_0 = 1
 4:0/0/custom_data_2 = "A shimmering jewel in the arid expanse, its waters promise life in the heart of desolation."
 4:0/0/custom_data_3 = [{
-"description": "drink water"
+"description": "Drink water"
 }]
 0:1/0 = 0
 0:1/0/custom_data_0 = 1
-0:1/0/custom_data_2 = "tent"
+0:1/0/custom_data_2 = "A nomadic desert tribe. They sell camels."
 0:1/0/custom_data_3 = [{
-"description": "drink water"
+"description": "Drink water"
+},{
+"description": "Train (-1 gold, -1 energy, +1 strength)",
+"effects": [{
+"type": "gold",
+"value": -1
+},{
+"type": "energy",
+"value": -1
+},{
+"type": "strength",
+"value": 1
+}]
 }]
 1:1/0 = 0
 1:1/0/custom_data_0 = 2
-1:1/0/custom_data_2 = "grass"
-1:1/0/custom_data_3 = [{
-"description": "a cave"
-}]
+1:1/0/custom_data_2 = "A dull and flat pasture, deserted by all but the hardiest of creatures."
+1:1/0/custom_data_3 = []
 2:1/0 = 0
 2:1/0/custom_data_0 = 2
-2:1/0/custom_data_2 = "hill"
-2:1/0/custom_data_3 = [{
-"description": "a cave"
-}]
+2:1/0/custom_data_2 = "Rolling hills stretch out in every direction, a sea of green beneath the endless sky."
+2:1/0/custom_data_3 = []
 3:1/0 = 0
 3:1/0/custom_data_0 = 2
-3:1/0/custom_data_2 = "Sunlight filters through an emerald canopy, dappling the mossy ground with shifting patterns."
+3:1/0/custom_data_2 = "A forest during fall is always dressed with beautiful reds and yellows."
 3:1/0/custom_data_3 = [{
-"description": "cut tree"
+"description": "Watch the falling leaves"
 }]
 4:1/0 = 0
 4:1/0/custom_data_0 = 1
 4:1/0/custom_data_2 = "A vast, rolling expanse where the wind dances freely through an ocean of emerald blades."
 4:1/0/custom_data_3 = [{
-"description": "pick some herbs"
+"description": "Touch grass"
 }]
 0:2/0 = 0
 0:2/0/custom_data_0 = 2
@@ -82,7 +94,7 @@ texture_region_size = Vector2i(72, 72)
 }]
 1:2/0 = 0
 1:2/0/custom_data_0 = 1
-1:2/0/custom_data_2 = "Nestled among towering peaks, the village clings to the mountainside like a secret whispered to the wind."
+1:2/0/custom_data_2 = "A very nice alpine house."
 1:2/0/custom_data_3 = [{
 "description": "oui"
 }]
@@ -90,56 +102,40 @@ texture_region_size = Vector2i(72, 72)
 2:2/0/custom_data_0 = 2
 2:2/0/custom_data_2 = "A frozen mirror stretches across the land, its surface trapping the sky in an eternal embrace."
 2:2/0/custom_data_3 = [{
-"description": "dig a hole"
+"description": "Try skating"
 }]
 3:2/0 = 0
 3:2/0/custom_data_0 = 2
 3:2/0/custom_data_2 = "Molten fire churns hungrily, a searing heart of destruction and creation."
 3:2/0/custom_data_3 = [{
-"description": "fire"
-}]
-4:2/0 = 0
-4:2/0/custom_data_0 = 2
-4:2/0/custom_data_2 = "The jagged peaks pierce the heavens, standing as silent sentinels of time."
-4:2/0/custom_data_3 = [{
-"description": "pray to the mountain god"
+"description": "BURN"
 }]
 0:3/0 = 0
 0:3/0/custom_data_0 = 2
-0:3/0/custom_data_2 = "ezar"
-0:3/0/custom_data_3 = [{
-"description": "a cave"
-}]
+0:3/0/custom_data_2 = "A vast expanse of damp earth, where the scent of decay mingles with the whispers of the dead."
+0:3/0/custom_data_3 = []
 1:3/0 = 0
 1:3/0/custom_data_0 = 1
-1:3/0/custom_data_2 = "ezra"
-1:3/0/custom_data_3 = [{
-"description": "a cave"
-}]
+1:3/0/custom_data_2 = "A beautiful country-side home."
+1:3/0/custom_data_3 = []
 2:3/0 = 0
 2:3/0/custom_data_0 = 1
 2:3/0/custom_data_2 = "Snow field"
 2:3/0/custom_data_3 = [{
-"description": "white everywhere"
+"description": "*Do you want to build a snowmaaaaaaan?*"
 }]
 3:3/0 = 0
 3:3/0/custom_data_0 = 2
-3:3/0/custom_data_2 = "Snowy Hill"
-3:3/0/custom_data_3 = [{
-"description": "A gentle slope blanketed in white, where every step is muffled by winter’s hush."
-}]
+3:3/0/custom_data_2 = "A gentle slope blanketed in white, where every step is muffled by winter’s hush."
+3:3/0/custom_data_3 = []
 4:3/0 = 0
 4:3/0/custom_data_0 = 2
-4:3/0/custom_data_2 = "Snowy Mountain"
-4:3/0/custom_data_3 = [{
-"description": "Ice-laden crags stand defiant against the howling wind, their peaks lost in the storm’s embrace."
-}]
+4:3/0/custom_data_2 = "Ice-laden crags stand defiant against the howling wind, their peaks lost in the storm’s embrace."
+4:3/0/custom_data_3 = []
 0:4/0 = 0
 0:4/0/custom_data_0 = 1
-0:4/0/custom_data_2 = "zera"
-0:4/0/custom_data_3 = [{
-"description": "a cave"
-}]
+0:4/0/custom_data_2 = "A lone hearth stands in the middle of a harsh and cold land."
+0:4/0/custom_data_3 = []
 1:4/0 = 0
 1:4/0/custom_data_0 = 2
 1:4/0/custom_data_2 = "Thick mists coil over stagnant waters, where twisted roots grasp hungrily at the sodden earth."
@@ -150,14 +146,14 @@ texture_region_size = Vector2i(72, 72)
 2:4/0/custom_data_0 = 1
 2:4/0/custom_data_2 = "Wooden walkways creak underfoot, suspended above murky waters that never truly sleep."
 2:4/0/custom_data_3 = [{
-"description": "buy a boat for 2 gold",
+"description": "Buy a boat (-2 gold)",
 "effects": [{
 "type": "gold",
 "value": -2
 }],
 "items": ["boat"]
 }, {
-"description": "pillage the village",
+"description": "Pillage the village",
 "effects": [{
 "type": "gold",
 "value": 2
@@ -171,18 +167,22 @@ texture_region_size = Vector2i(72, 72)
 3:4/0/custom_data_0 = 2
 3:4/0/custom_data_2 = "Volcano"
 3:4/0/custom_data_3 = [{
-"description": "Blackened rock trembles with hidden fury, veins of fire glowing beneath the cracks."
+"description": "Look at the lava"
 }]
 4:4/0 = 0
 4:4/0/custom_data_0 = 1
 4:4/0/custom_data_2 = "Ocean"
 4:4/0/custom_data_3 = [{
-"description": "The endless blue whispers with the voice of the tides, carrying secrets only the deep can know."
+"description": "Try fishing"
 }]
 0:5/0 = 0
 0:5/0/custom_data_1 = true
 1:5/0 = 0
 1:5/0/custom_data_1 = true
+4:2/0 = 0
+4:2/0/custom_data_0 = 2
+4:2/0/custom_data_2 = "The jagged peaks pierce the heavens, standing as silent sentinels of time."
+4:2/0/custom_data_3 = []
 
 [sub_resource type="TileSet" id="Ground"]
 resource_name = "Ground"
