@@ -1,10 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://dqrqfiqnps5kr"]
+[gd_scene load_steps=3 format=3 uid="uid://bh8cjkfr0ihyb"]
 
-[ext_resource type="Theme" uid="uid://b6jvf3edqsin" path="res://themes/buttonTheme.tres" id="1_xf8ka"]
-[ext_resource type="Script" path="res://scripts/action.gd" id="2_5vpap"]
+[ext_resource type="Theme" uid="uid://b6jvf3edqsin" path="res://themes/buttonTheme.tres" id="1_tbfwe"]
+[ext_resource type="Script" path="res://scripts/button.gd" id="2_0yqym"]
 
 [node name="Button" type="Button"]
-offset_right = 135.0
-offset_bottom = 31.0
-theme = ExtResource("1_xf8ka")
-script = ExtResource("2_5vpap")
+offset_right = 8.0
+offset_bottom = 8.0
+theme = ExtResource("1_tbfwe")
+script = ExtResource("2_0yqym")
+metadata/index = 0
+
+[connection signal="button_up" from="." to="." method="_on_button_up"]

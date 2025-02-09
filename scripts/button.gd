@@ -10,11 +10,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
-signal spendAction
+signal button_up_index
 
-func _on_pressed() -> void:
-	spendAction.emit(get_meta("actionCost"), self)
-
-
-func _on_animated_sprite_2d_animation_finished() -> void:
-	queue_free()
+func _on_button_up() -> void:
+	button_up_index.emit(get_meta("index"))
