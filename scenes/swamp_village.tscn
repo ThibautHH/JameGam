@@ -1,0 +1,47 @@
+[gd_scene load_steps=3 format=3 uid="uid://dm6ham3cokkrp"]
+
+[ext_resource type="Script" path="res://scenes/swamp_village.gd" id="1_ylums"]
+[ext_resource type="Theme" uid="uid://b6jvf3edqsin" path="res://themes/buttonTheme.tres" id="2_32d33"]
+
+[node name="swamp_village" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ylums")
+
+[node name="buy boat" type="Button" parent="."]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 7.0
+offset_right = 185.0
+offset_bottom = 54.0
+theme = ExtResource("2_32d33")
+text = "buy a boat
++1 boat  |  -2 gold"
+
+[node name="rest" type="Button" parent="."]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 188.0
+offset_right = 191.0
+offset_bottom = 232.0
+theme = ExtResource("2_32d33")
+text = "rest in a room
+-1 gold  |  +2 energy"
+
+[node name="pillage" type="Button" parent="."]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 95.0
+offset_right = 190.0
+offset_bottom = 143.0
+theme = ExtResource("2_32d33")
+text = "pillage the village
++1 gold  |  +1 evil"
+
+[connection signal="button_up" from="buy boat" to="." method="_on_buy_boat_button_up"]
+[connection signal="button_up" from="rest" to="." method="_on_rest_button_up"]
+[connection signal="button_up" from="pillage" to="." method="_on_pillage_button_up"]

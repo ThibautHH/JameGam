@@ -1,64 +1,112 @@
-[gd_scene load_steps=11 format=3 uid="uid://7vbn4es3hxe7"]
+[gd_scene load_steps=12 format=3 uid="uid://7vbn4es3hxe7"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_xtrjf"]
 [ext_resource type="Texture2D" uid="uid://bt0mykalwcj1r" path="res://assets/tiles/atlas.png" id="2_dc44s"]
 [ext_resource type="Texture2D" uid="uid://dai8srkt84aqc" path="res://assets/units/atlas.png" id="3_j7hd8"]
 [ext_resource type="Texture2D" uid="uid://bqlsj77rv25ce" path="res://assets/overlay/atlas.png" id="4_eqmcd"]
+[ext_resource type="Theme" uid="uid://b6jvf3edqsin" path="res://themes/buttonTheme.tres" id="5_ldy4f"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_Biomes"]
 resource_name = "Biomes"
 texture = ExtResource("2_dc44s")
 texture_region_size = Vector2i(72, 72)
 0:0/0 = 0
+0:0/0/custom_data_0 = "cave"
 1:0/0 = 0
+1:0/0/custom_data_0 = "mountain"
 2:0/0 = 0
+2:0/0/custom_data_0 = "desert"
 3:0/0 = 0
+3:0/0/custom_data_0 = "desertHill"
 4:0/0 = 0
+4:0/0/custom_data_0 = "oasis"
 0:1/0 = 0
+0:1/0/custom_data_0 = "tent"
 1:1/0 = 0
+1:1/0/custom_data_0 = "grass"
 2:1/0 = 0
+2:1/0/custom_data_0 = "hill"
 3:1/0 = 0
+3:1/0/custom_data_0 = "forest"
 4:1/0 = 0
+4:1/0/custom_data_0 = "grass"
 0:2/0 = 0
+0:2/0/custom_data_0 = "hill"
 1:2/0 = 0
+1:2/0/custom_data_0 = "house"
 2:2/0 = 0
+2:2/0/custom_data_0 = "cis"
 3:2/0 = 0
+3:2/0/custom_data_0 = "zear"
 4:2/0 = 0
+4:2/0/custom_data_0 = "ezar"
 0:3/0 = 0
+0:3/0/custom_data_0 = "ezar"
 1:3/0 = 0
+1:3/0/custom_data_0 = "ezra"
 2:3/0 = 0
+2:3/0/custom_data_0 = "ezar"
 3:3/0 = 0
+3:3/0/custom_data_0 = "ezar"
 4:3/0 = 0
+4:3/0/custom_data_0 = "zear"
 0:4/0 = 0
+0:4/0/custom_data_0 = "zera"
 1:4/0 = 0
+1:4/0/custom_data_0 = "zaer"
 2:4/0 = 0
+2:4/0/custom_data_0 = "zear"
 3:4/0 = 0
+3:4/0/custom_data_0 = "azer"
 4:4/0 = 0
+4:4/0/custom_data_0 = "zear"
 
 [sub_resource type="TileSet" id="Ground"]
 resource_name = "Ground"
 tile_shape = 3
 tile_offset_axis = 1
 tile_size = Vector2i(72, 72)
+custom_data_layer_0/name = "flavor_text"
+custom_data_layer_0/type = 4
 sources/0 = SubResource("TileSetAtlasSource_Biomes")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_we8m3"]
 texture = ExtResource("3_j7hd8")
 texture_region_size = Vector2i(72, 72)
 0:0/0 = 0
+0:0/0/custom_data_0 = "adept"
+0:0/0/custom_data_1 = "looks like a beggar"
 1:0/0 = 0
+1:0/0/custom_data_0 = "berserk"
+1:0/0/custom_data_1 = "an angry looking dwarf"
 2:0/0 = 0
+2:0/0/custom_data_0 = "boat"
+2:0/0/custom_data_1 = "a cool looking boat"
 0:1/0 = 0
+0:1/0/custom_data_0 = "dragon"
+0:1/0/custom_data_1 = "does this guy breathe fire ?"
 1:1/0 = 0
+1:1/0/custom_data_0 = "troll"
+1:1/0/custom_data_1 = "uncivilised creature"
 2:1/0 = 0
+2:1/0/custom_data_0 = "ogre"
+2:1/0/custom_data_1 = "ughhh, what an ugly looking creature"
 0:2/0 = 0
+0:2/0/custom_data_0 = "peasant"
+0:2/0/custom_data_1 = "a farmer ..."
 1:2/0 = 0
+1:2/0/custom_data_0 = "scorpion"
+1:2/0/custom_data_1 = "this sneaky bastard looks dangerous"
 
 [sub_resource type="TileSet" id="Entities"]
 resource_name = "Entities"
 tile_shape = 3
 tile_offset_axis = 1
 tile_size = Vector2i(72, 72)
+custom_data_layer_0/name = "type"
+custom_data_layer_0/type = 4
+custom_data_layer_1/name = "flavor_text"
+custom_data_layer_1/type = 4
 sources/0 = SubResource("TileSetAtlasSource_we8m3")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_Overlays"]
@@ -94,3 +142,42 @@ tile_set = SubResource("Entities")
 
 [node name="UI Layer" type="TileMapLayer" parent="."]
 tile_set = SubResource("Overlays")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 1567.0
+offset_top = 31.0
+offset_right = 1607.0
+offset_bottom = 71.0
+
+[node name="tile description" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 200.0
+offset_top = 50.0
+offset_right = 240.0
+offset_bottom = 73.0
+
+[node name="entity description" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 190.0
+offset_top = 183.0
+offset_right = 230.0
+offset_bottom = 206.0
+
+[node name="move to tile" type="Button" parent="Control"]
+layout_mode = 0
+offset_left = 135.0
+offset_top = 884.0
+offset_right = 227.0
+offset_bottom = 911.0
+scale = Vector2(2, 2)
+theme = ExtResource("5_ldy4f")
+text = "move to tile"
+
+[node name="inventory" type="Node" parent="."]
+metadata/gold = 0
+metadata/items = []
+metadata/evil = 0
+
+[connection signal="button_up" from="Control/move to tile" to="." method="_on_move_to_tile_button_up"]
