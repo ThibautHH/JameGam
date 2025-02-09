@@ -11,6 +11,11 @@ var target_tile : Vector2i = Vector2i(0, 0)
 
 @export var events : Node
 
+@export var gold_display : Label
+@export var evil_display : Label
+@export var strength_display : Label
+@export var energy_display : Label
+
 var player_max_stamina : int = 1
 
 var lost : bool = false
@@ -65,8 +70,6 @@ func move_player(pos : Vector2i) -> void:
 	entity_layer.set_cell(player_pos)
 	entity_layer.set_cell(pos, 0, Vector2i(0, 0))
 	player_pos = pos
-	Inventory.set_meta("energy",
-		Inventory.get_meta("energy") - get_tile_movement_cost(pos))
 	clearInteractions()
 	spawnInterations(ground_layer.get_cell_tile_data(pos), pos)
 
@@ -74,7 +77,7 @@ func is_impassable(pos : Vector2i) -> bool:
 	return ground_layer.get_cell_tile_data(pos).get_custom_data("impassable")
 
 func can_move_to(pos : Vector2i) -> bool:
-	return !is_impassable(pos) and Inventory.get_meta("energy") >= 1
+	return !is_impassable(pos) and get_meta("energy") >= 1
 
 func is_tile_possible_destination(pos : Vector2i) -> bool:
 	return (is_neighbour(pos, player_pos) and !is_void(pos))
@@ -101,11 +104,11 @@ func end_turn() -> void:
 	if is_surrounded(player_pos):
 		lost = true
 		return
-	var energy : int = Inventory.get_meta("energy")
-	if energy < Inventory.get_meta("max_energy"):
-		Inventory.set_meta("energy", energy + 1)
+	var energy : int = get_meta("energy")
+	if energy < get_meta("max_energy"):
+		set_meta("energy", energy + 1)
 	else:
-		Inventory.set_meta("energy", Inventory.get_meta("max_energy")) 
+		set_meta("energy", get_meta("max_energy")) 
 
 func interact_with_tile(pos : Vector2i):
 	if is_tile_possible_destination(pos):
@@ -119,9 +122,11 @@ func interact_with_tile(pos : Vector2i):
 func move() -> void:
 	if !(is_tile_possible_destination(target_tile) and can_move_to(target_tile)):
 		return
+	set_meta("energy",
+		get_meta("energy") - get_tile_movement_cost(target_tile))
 	if target_tile in entity_layer.get_used_cells():
 		var odds : int = maxi(entity_layer.get_cell_tile_data(target_tile)
-			.get_custom_data("strength") - Inventory.get_meta("strength"), 0)
+			.get_custom_data("strength") - get_meta("strength"), 0)
 		if odds != 0 and randi_range(0, odds) != 0:
 			return
 	move_player(target_tile)
@@ -174,15 +179,21 @@ func spawnInterations(terrainData, pos) -> void:
 func apply_effects(index : int, target_tile : Vector2i) -> void:
 	var data = ground_layer.get_cell_tile_data(target_tile).get_custom_data("events")[index]
 	for effect in data.effects:
-		if (Inventory.get_meta(effect.type) + effect.value) < 0:
+		if (get_meta(effect.type) + effect.value) < 0:
 			console.text = "[color=red]not enough " + effect.type + "[/color]"
 			return
 	for effect in data.effects:
-		Inventory.set_meta(effect.type, Inventory.get_meta(effect.type) + effect.value)
+		set_meta(effect.type, get_meta(effect.type) + effect.value)
 	if (data.has("items")):
 		for item in data.items:
-			Inventory.get_meta("items").append(item)
+			get_meta("items").append(item)
 	if (data.has("special")):
 		var special = data.special;
 		if (special == "destroy"):
 			clearInteractions()
+
+func _process(delta: float) -> void:
+	gold_display.text = str(get_meta("gold"))
+	evil_display.text = str(get_meta("evil"))
+	strength_display.text = str(get_meta("strength"))
+	energy_display.text = str(get_meta("energy")) + " / " + str(get_meta("max_energy"))
