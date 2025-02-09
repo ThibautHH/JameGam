@@ -4,8 +4,8 @@
 [ext_resource type="Script" path="res://scripts/button.gd" id="2_0yqym"]
 
 [node name="Button" type="Button"]
-offset_right = 8.0
-offset_bottom = 8.0
+offset_right = 333.0
+offset_bottom = 52.0
 theme = ExtResource("1_tbfwe")
 script = ExtResource("2_0yqym")
 metadata/index = 0

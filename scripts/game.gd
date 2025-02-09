@@ -16,9 +16,12 @@ var target_tile : Vector2i = Vector2i(0, 0)
 @export var strength_display : Label
 @export var energy_display : Label
 
+@onready var tile_description: RichTextLabel = $GUI/tile_description
+
 var player_max_stamina : int = 1
 
 var lost : bool = false
+@onready var move_to_tile: Button = $"GUI/move to tile"
 
 const all_directions : Array = [
 	TileSet.CellNeighbor.CELL_NEIGHBOR_TOP_LEFT_SIDE,
@@ -101,6 +104,7 @@ func create_new_tile(pos : Vector2i) -> void:
 func end_turn() -> void:
 	create_new_tile(get_random_empty_neighbour(player_pos))
 	ground_layer.get_used_cells().filter(is_surrounded).map(func(pos): spwanUfo(pos))
+	clearInteractions()
 	if is_surrounded(player_pos):
 		lost = true
 		return
@@ -111,17 +115,22 @@ func end_turn() -> void:
 		set_meta("energy", get_meta("max_energy")) 
 
 func interact_with_tile(pos : Vector2i):
-	if is_tile_possible_destination(pos):
+	if is_tile_possible_destination(pos) and can_move_to(pos):
+		if can_move_to(pos):
+			move_to_tile.disabled = false
+		else:
+			move_to_tile.disabled = true
 		target_tile = pos
 		var atlas_coords = ground_layer.get_cell_atlas_coords(target_tile)
 		var texture_scr = "res://assets/tiles/" + str(atlas_coords.y) + "_" + str(atlas_coords.x) + ".png"
 		tile_preview.texture = load(texture_scr)
-	if pos != player_pos:
-		pass
+		tile_description.clear()
+		tile_description.add_text(ground_layer.get_cell_tile_data(pos).get_custom_data("flavor_text"))
 
 func move() -> void:
 	if !(is_tile_possible_destination(target_tile) and can_move_to(target_tile)):
 		return
+	move_to_tile.disabled = true
 	set_meta("energy",
 		get_meta("energy") - get_tile_movement_cost(target_tile))
 	if target_tile in entity_layer.get_used_cells():
@@ -150,7 +159,7 @@ func _input(event: InputEvent) -> void:
 	if lost:
 		return
 	if (event is InputEventMouseButton and event.pressed
-		and event.button_index == MOUSE_BUTTON_LEFT):
+		and event.button_index == MOUSE_BUTTON_LEFT and event.position.x < 1450):
 			interact_with_tile(
 				ground_layer.local_to_map(
 					ground_layer.to_local(event.position)))
@@ -169,7 +178,7 @@ func spawnInterations(terrainData, pos) -> void:
 		button.text = elem.description
 		button.set_meta("index", index)
 		button.set_meta("target_tile", pos)
-		button.position = Vector2i(0, index * 50)
+		button.position = Vector2i(1520, 300 + index * 70)
 		button.button_up_index.connect(apply_effects)
 		events.add_child(button)
 		index += 1
@@ -198,6 +207,7 @@ func _process(delta: float) -> void:
 	evil_display.text = str(get_meta("evil"))
 	strength_display.text = str(get_meta("strength"))
 	energy_display.text = str(get_meta("energy")) + " / " + str(get_meta("max_energy"))
+
 func spwanUfo(pos : Vector2i) -> void:
 	if (ground_layer.get_cell_atlas_coords(pos).y == 5):
 		return
