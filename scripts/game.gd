@@ -100,7 +100,8 @@ func end_turn() -> void:
 	ground_layer.get_used_cells().filter(is_surrounded).map(func(pos):
 		ground_layer.set_cell(pos, 0,
 			Vector2i(#ground_layer.get_cell_atlas_coords(pos).x, 5)))
-				1, 5)))
+				1, 5))
+		entity_layer.set_cell(pos))
 	if is_surrounded(player_pos):
 		lost = true
 		return
